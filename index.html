@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Automatically Generated Project Documentation</title>
+
+		<meta name="description" content="Lightning talk from Newton OpenStack summit covering the enhancements made during Liberty and Mitaka to Oslo libraries for automatically generating reference documentation.">
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+		<!-- Team CSS -->
+		<style id="global-css-output" type="text/css">
+			@import url("https://s3.amazonaws.com/static.slid.es/fonts/overpass2/overpass2.css");
+.reveal {
+  
+  /*fix icon inversion*/
+}
+.reveal svg,
+.reveal text,
+.reveal tspan,
+.reveal svg text {
+  font-family: "Overpass 2", Overpass, sans-serif !important;
+  color: currentcolor;
+  fill: currentcolor;
+}
+.reveal .sl-block {
+  color: #354045;
+  fill: currentcolor;
+}
+.reveal .sl-block svg {
+  color: currentcolor;
+}
+.reveal .has-dark-background,
+.reveal .has-dark-background > .sl-block {
+  color: white;
+  fill: currentcolor;
+}
+.reveal .has-dark-background > .sl-block .sl-block {
+  color: white;
+  fill: currentcolor;
+}
+.reveal section > .sl-block .redhat-logo .logotext {
+  fill: black;
+}
+.reveal .has-dark-background > .sl-block .redhat-logo .logotext {
+  fill: white;
+}
+.reveal .has-dark-background > .sl-block[data-block-type="image"] {
+  color: white;
+}
+.reveal [fill="none"] {
+  fill: none !important;
+}
+.reveal [fill="#a30000"] {
+  fill: #a00 !important;
+}
+.reveal [fill="#cc2029"],
+.reveal [fill="#cb2027"],
+.reveal [fill="#c00"] {
+  fill: #c00 !important;
+}
+.reveal [fill="#fff"] {
+  fill: #fff !important;
+}
+.reveal [fill="#6d6e70"] {
+  fill: #6d6e70 !important;
+}
+.reveal [fill="#231f20"] {
+  fill: currentcolor !important;
+}
+.reveal [fill="#efab1f"] {
+  fill: #efab1f !important;
+}
+.reveal [fill="#92d400"] {
+  fill: #92d400 !important;
+}
+.reveal .has-dark-background [fill="#6d6e70"] {
+  fill: #266272 !important;
+}
+.reveal .has-dark-background [fill="#fff"] {
+  fill: #555 !important;
+}
+.reveal .has-dark-background [fill="#fff"] {
+  fill: #333 !important;
+}
+.reveal .has-dark-background [stroke="#231f20"] {
+  stroke: currentcolor;
+}
+.reveal [data-inline-svg="true"] img {
+  display: none;
+}
+
+		</style>
+
+
+	</head>
+	<body class="reveal-viewport theme-font-montserrat theme-color-no-color">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="0cf9a2de45c29e79cfe1d12cef1327cf"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 70px; height: auto;" data-block-id="043ece0071af34f3d3802f4de000957c"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11; text-align: left;">
+<h1>Automatically Generated Project</h1>
+
+<h1>Documentation</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="b7dcf1c571ea29e99ca943a15b8689d1" style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 80px; top: 420px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left;">
+<p>Improvements to Oslo Tools During Mitaka</p>
+
+<p>Doug Hellmann</p>
+
+<p>April 2016</p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="e977ed0dc1e2f7e5332b79850160d97d" style="min-width: 30px; min-height: 30px; width: 225.431px; height: 210px; left: 734.569px; top: 490px;"><div class="sl-block-content" style="z-index: 13;"><img data-natural-width="336" data-natural-height="313" style="" data-src="automatically-generated-project-documentation/9a3350f5d33d21cee9a7371c3b2dff3b.svg"></div></div></section><section class="has-light-background" data-background-color="#fafafa" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="2a20a43e8625f55397d4f02304c2003f">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 915px; left: 45px; top: 70px;" data-block-id="2f9ac2ceb1303fe59ff86d316dde7dce"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left;">
+<h1>oslo.config</h1>
+
+<h2><span style="font-size:0.9em">Sample Config Generator</span></h2>
+
+<ul>
+	<li>
+	<h3>plain text output</h3>
+	</li>
+	<li>
+	<h3>options, help text, groups, etc.</h3>
+	</li>
+	<li>
+	<h3>application control option ordering</h3>
+	</li>
+</ul>
+</div></div></section><section data-id="56116048134f29b75ff983e82706381f"><div class="sl-block" data-block-type="code" data-block-id="a7a7d7c9cb5380efe91181abb4149035" style="min-width: 30px; min-height: 30px; width: 960px; height: 700px; left: 0px; top: 0px;"><div class="sl-block-content" style="z-index: 12;" data-highlight-theme="xcode"><pre class="ini"><code>[DEFAULT]
+
+#
+# From keystone
+#
+
+# A "shared secret" that can be used to bootstrap Keystone. This "token" does
+# not represent a user, and carries no explicit authorization. If set to
+# `None`, the value is ignored and the `admin_token` log in mechanism is
+# effectively disabled. To completely disable `admin_token` in production
+# (highly recommended), remove AdminTokenAuthMiddleware from your paste
+# application pipelines (for example, in keystone-paste.ini). (string value)
+#admin_token = &lt;None&gt;
+
+# The base public endpoint URL for Keystone that is advertised to clients
+# (NOTE: this does NOT affect how Keystone listens for connections). Defaults
+# to the base host URL of the request. E.g. a request to
+# http://server:5000/v3/users will default to http://server:5000. You should
+# only need to set this value if the base URL contains a path (e.g. /prefix/v3)
+# or the endpoint should be found on a different server. (string value)
+#public_endpoint = &lt;None&gt;
+
+# The base admin endpoint URL for Keystone that is advertised to clients (NOTE:
+# this does NOT affect how Keystone listens for connections). Defaults to the
+# base host URL of the request. E.g. a request to http://server:35357/v3/users
+# will default to http://server:35357. You should only need to set this value
+# if the base URL contains a path (e.g. /prefix/v3) or the endpoint should be
+# found on a different server. (string value)
+#admin_endpoint = &lt;None&gt;
+
+# Maximum depth of the project hierarchy, excluding the project acting as a
+# domain at the top of the hierarchy. WARNING: setting it to a large value may
+# adversely impact  performance. (integer value)</code></pre></div></div></section><section class="has-light-background" data-background-color="#fafafa" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="efa6aa74fc2599840d23b7fd200aa93e">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 915px; left: 45px; top: 65px;" data-block-id="89aef6976502ea537e05f5f4aaad1673"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left;">
+<h1 style="color:rgb(53, 64, 69)">oslo.config</h1>
+
+<h2 style="color:rgb(53, 64, 69)"><span style="font-size:0.9em"><em>Sphinx </em>Sample Config Generator</span></h2>
+
+<ul style="color:rgb(53, 64, 69)">
+	<li>
+	<h3>integrates with doc build</h3>
+	</li>
+	<li>
+	<h3>shows sample configuration file</h3>
+	</li>
+	<li>
+	<h3>allows sample configuration to be added to doc package</h3>
+	</li>
+	<li>
+	<h3>override default values for sample file</h3>
+	</li>
+</ul>
+</div></div></section><section class="has-light-background" data-background-color="#efefef" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="21fee84dce3f13216511c17335e59f77"><div class="sl-block" data-block-type="code" data-block-id="9375c40093ed6fe0e275a45790855ff8" style="min-width: 30px; min-height: 30px; width: 960px; height: 700px; left: 0px; top: 0px;"><div class="sl-block-content" style="z-index: 11; font-size: 120%;" data-highlight-theme="xcode"><pre class="python"><code># in doc/source/conf.py
+
+config_generator_config_file = '../../config-generator/myapp.conf'
+sample_config_basename = 'myapp'
+
+
+# in doc/source/sample_conf.rst
+
+.. literalinclude:: myapp.conf.sample</code></pre></div></div></section><section class="has-light-background" data-background-color="#efefef" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="0a2da2593d59b61246ead030b8c9d1c8"><div class="sl-block" data-block-type="image" data-block-id="37c5104a3bfe6cf73d1cd82c1c31682f" style="min-width: 30px; min-height: 30px; width: 960px; height: 591.686px; left: 0px; top: 38px;"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="967" data-natural-height="596" style="" data-src="automatically-generated-project-documentation/d590c048f947142e0336d0437ae4f765.png"></div></div></section><section class="has-light-background" data-background-color="#fafafa" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="e6dfd9cd6e89109388b9c66ac072b11b">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 915px; left: 45px; top: 70px;" data-block-id="710868619299ee83e568967321f1e665"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left;">
+<h1>oslo.config</h1>
+
+<h2>Sphinx Reference Generator</h2>
+
+<ul>
+	<li>
+	<h3>Rendered HTML</h3>
+	</li>
+	<li>
+	<h3>Same Input as Config Generator</h3>
+	</li>
+	<li>
+	<h3>Namespace and Multi-Page Support for Organization</h3>
+	</li>
+	<li>
+	<h3>Link to Option Definitions from Other Places</h3>
+	</li>
+</ul>
+</div></div></section><section class="has-light-background" data-background-color="#efefef" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="849fe5002fe7e1818c023bca7b459d56"><div class="sl-block" data-block-type="code" data-block-id="533f7564cbd65f986a58218b3e385c08" style="min-width: 30px; min-height: 30px; width: 960px; height: 700px; left: 0px; top: 0px;"><div class="sl-block-content" style="z-index: 11; font-size: 120%;" data-highlight-theme="xcode"><pre class="ini"><code>---------------
+glance-api.conf
+---------------
+
+.. show-options::
+   :config-file: etc/oslo-config-generator/glance-api.conf</code></pre></div></div></section><section class="has-light-background" data-background-color="#efefef" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="6e6408dc96f6cca3e2c557f6e2fa3c5e"><div class="sl-block" data-block-type="image" data-block-id="8835893bb6b2e052462b36c5ede762a8" style="min-width: 30px; min-height: 30px; width: 951.672px; height: 665px; left: 0px; top: 18px;"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="976" data-natural-height="682" style="" data-src="automatically-generated-project-documentation/e72aa55b95fc015ba8e30015da55478f.png"></div></div></section><section class="has-light-background" data-background-color="#fafafa" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="d30af12f5a7fb020f8567daa5d4b74a3">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 915px; left: 45px; top: 70px;" data-block-id="c624c2b949833a4b5db93abed4480e7b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left;">
+<h1>stevedore</h1>
+
+<h2>List Plugins</h2>
+
+<ul>
+	<li>
+	<h3>Simple or Detailed</h3>
+	</li>
+	<li>
+	<h3>Includes Help Text from Code</h3>
+	</li>
+</ul>
+</div></div></section><section class="has-light-background" data-background-color="#efefef" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="d7fd369717c88f64b6b68561621bb7ff"><div class="sl-block" data-block-type="image" data-block-id="53d41ac3d958699717971e196bf76037" style="min-width: 30px; min-height: 30px; width: 591.5px; height: 700px; left: 184px; top: 0px;"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="676" data-natural-height="800" style="" data-src="automatically-generated-project-documentation/422aaf72a29748f92f2fd76dcbc4da4c.png"></div></div></section><section class="has-light-background" data-background-color="#efefef" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="c7418d5e9b60636997b1d8b97109e96b"><div class="sl-block" data-block-type="image" data-block-id="472ae3710b127715900d03c9029648c1" style="min-width: 30px; min-height: 30px; width: 758.147px; height: 700px; left: 101px; top: 0px;"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="678" data-natural-height="626" style="" data-src="automatically-generated-project-documentation/1c8bb46f9ca59bd000e82ab4e0bb033b.png"></div></div></section><section class="has-light-background" data-background-color="#fafafa" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="a3edff04bdab3d6bec9f89874106f2ed">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 915px; left: 51px; top: 63px;" data-block-id="0301ae8ffa2c2082e39c59b943213672"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left;">
+<h1>Future Work</h1>
+
+<ul>
+	<li>
+	<h3>Refinements to Sphinx Integration</h3>
+	</li>
+	<li>
+	<h3>Sample Generator and Reference Docs for Policy</h3>
+	</li>
+	<li>
+	<h3>Move from PoC to Production</h3>
+	</li>
+</ul>
+</div></div></section><section class="has-light-background" data-background-color="#fafafa" data-background-image="automatically-generated-project-documentation/60672f0849c5b758b11dc0905dc42c02.svg" data-id="d074a886e2f84c3f2b0bb010b66ea5b0">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 960px; left: 0px; top: 70px;" data-block-id="f25960ac536eb9c838704be3ce57b0e5"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left;">
+<h1>References</h1>
+
+<p><span style="font-size:1.0em">http://docs.openstack.org/developer/oslo.config</span></p>
+
+<p><span style="font-size:1.0em">http://docs.openstack.org/developer/stevedore</span></p>
+</div></div></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":666662,"slug":"automatically-generated-project-documentation","title":"Automatically Generated Project Documentation","description":"Lightning talk from Newton OpenStack summit covering the enhancements made during Liberty and Mitaka to Oslo libraries for automatically generating reference documentation.","width":960,"height":700,"margin":0.05,"visibility":"all","published_at":"2016-04-14T20:00:49.801Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/3a7127f28d47fc5111286edbe56a5292/thumb.jpg?1556902660","view_count":46,"user":{"id":488359,"username":"dhellman","name":"Doug Hellmann","description":null,"thumbnail_url":"https://www.gravatar.com/avatar/a63fc827305721a3c0ea68ca8026b9e2?s=140\u0026d=https%3A%2F%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","paid":true,"pro":true,"lite":false,"team_id":32,"settings":{"id":330437,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null},"enterprise":true,"membership":{"role":"member","manager":false,"activated":true}},"background_transition":"none","transition":"none","theme_id":null,"theme_font":"montserrat","theme_color":"no-color","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":null,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":14,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":null,"data_updated_at":null,"font_typekit":null,"font_google":null,"time_limit":null,"upsizing_enabled":null,"notes":{"c7418d5e9b60636997b1d8b97109e96b":"For example, this is the reference guide for oslo.messaging drivers. Note that there is restructured text formatting included in the docstrings for the driver classes in the plugin set.","0cf9a2de45c29e79cfe1d12cef1327cf":"We made improvements to a couple of libraries in Liberty and Mitaka to make it possible or easier to automatically generate reference documentation so we can focus writing efforts on examples and other things that can't be generated.","2a20a43e8625f55397d4f02304c2003f":"The sample config generator was rewritten from scratch to replace the version in the incubator. We did this because we ran into limitations with the one from the incubator, especially the fact that we were starting to have more cases of configuration options that couldn't be discovered properly at runtime.","56116048134f29b75ff983e82706381f":"The output is largely the same plain text INI file, though we've updated it a bit to include some of the features of oslo.config that weren't handled before.","efa6aa74fc2599840d23b7fd200aa93e":"We added some integration with Sphinx to make it easy to generate a sample configuration file as the documentation is being built. This lets you do things like include that sample file directly in your docs, and provide a download link to it.","21fee84dce3f13216511c17335e59f77":"To use this feature, you enable the extension and set the name of the input file for the generator configuration. The output file can then be included as a plain text file.","0a2da2593d59b61246ead030b8c9d1c8":"The result looks something like this.","e6dfd9cd6e89109388b9c66ac072b11b":"Including the sample config file directly doesn't produce something nicely readable, so we also have an extension for rendering an HTML reference guide for configuration options.","849fe5002fe7e1818c023bca7b459d56":"This extension uses the same input file as the config generator.","6e6408dc96f6cca3e2c557f6e2fa3c5e":"And the output is rendered directly into the HTML build as a nicely formatted table, grouping the options by their section name and then showing them in the order they are discovered. All of the useful properties of the options are shown, including their help string, info about valid values, etc.","d30af12f5a7fb020f8567daa5d4b74a3":"We did something similar with stevedore, to make it easy to document sets of plugins like drivers or other extensions.","d7fd369717c88f64b6b68561621bb7ff":"There are two output formats supported there, a simple list with the name and a one-line description or a more detailed view showing a bunch of help text."}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/reveal.min.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.05,
+				maxScale: 1,
+
+				hash: true,
+				controls: true,
+				progress: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: false,
+
+				autoSlide: 0,
+				autoSlideStoppable: true,
+
+				autoAnimateMatcher: SL.deck.AutoAnimate.matcher,
+
+				center: false,
+				shuffle: false,
+				loop: false,
+				rtl: false,
+
+				transition: "none",
+				backgroundTransition: "none",
+
+				highlight: {
+					escapeHTML: false
+				},
+
+				dependencies: [
+					{ src: 'lib/reveal-plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/highlight/highlight.js' },
+					{ src: 'lib/reveal-plugins/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'lib/reveal-plugins/zoom/zoom.js', async: true }
+				]
+			});
+		</script>
+
+		
+
+	</body>
+</html>
